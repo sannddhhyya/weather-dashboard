@@ -12,6 +12,7 @@ body {
   align-items: center;
   min-height: 100vh;
   transition: background 1s ease;
+  padding: 20px;
 }
 
 .weather-container {
@@ -20,24 +21,27 @@ body {
   border-radius: 15px;
   text-align: center;
   box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
-  width: 320px;
+  width: 350px;
+  max-width: 100%;
 }
 
 h1 {
   margin-bottom: 20px;
   color: #333;
+  font-size: 1.5rem;
 }
 
 select {
-  padding: 10px;
+  padding: 12px;
   width: 100%;
   margin-bottom: 15px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  font-size: 16px;
 }
 
 button {
-  padding: 10px 20px;
+  padding: 12px 20px;
   border: none;
   background-color: #1e90ff;
   color: white;
@@ -46,6 +50,8 @@ button {
   border-radius: 5px;
   margin-bottom: 20px;
   transition: 0.3s;
+  font-size: 16px;
+  width: 100%;
 }
 
 button:hover {
@@ -54,15 +60,41 @@ button:hover {
 
 #weather-result {
   margin-top: 20px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .weather-icon {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
+  margin: 10px auto;
+}
+
+.loading-message {
+  color: #666;
+  font-style: italic;
+}
+
+#weather-result h2 {
+  margin: 10px 0;
+  color: #333;
+}
+
+#weather-result p {
+  margin: 5px 0;
+  color: #555;
+  font-size: 1.1rem;
 }
 
 @media (max-width: 400px) {
   .weather-container {
-    width: 90%;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 1.3rem;
   }
 }
