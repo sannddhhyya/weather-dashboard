@@ -1,24 +1,22 @@
-const apiKey = "YOUR_API_KEY"; // Replace with your OpenWeatherMap API key
+const apiKey = "YOUR_API_KEY"; // 🔑 Replace with your OpenWeatherMap API key
 const button = document.getElementById("get-weather");
-const input = document.getElementById("city-input");
+const select = document.getElementById("city-input");
 const resultDiv = document.getElementById("weather-result");
 
 button.addEventListener("click", () => {
-    let city = input.value.trim();
-    if (!city) {
-        city = "Johannesburg"; // default city
-    }
+    const city = select.value;
 
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},ZA&appid=${apiKey}&units=metric`)
         .then(res => res.json())
         .then(data => {
             if (data.cod === "404") {
-                resultDiv.innerHTML = `<p>City not found! Make sure it’s a South African city.</p>`;
+                resultDiv.innerHTML = `<p>City not found!</p>`;
                 return;
             }
 
             const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
 
+            // Display weather info
             resultDiv.innerHTML = `
                 <h2>${data.name}, ${data.sys.country}</h2>
                 <img src="${iconUrl}" class="weather-icon" alt="weather icon">
@@ -27,7 +25,7 @@ button.addEventListener("click", () => {
                 <p>Humidity: ${data.main.humidity}%</p>
             `;
 
-            // Dynamic background
+            // Change background based on weather
             const weatherMain = data.weather[0].main.toLowerCase();
             if (weatherMain.includes("cloud")) {
                 document.body.style.background = "linear-gradient(to bottom, #bdc3c7, #2c3e50)";
@@ -45,8 +43,6 @@ button.addEventListener("click", () => {
         })
         .catch(err => {
             console.error(err);
-            resultDiv.innerHTML = `<p>Error fetching weather data. Make sure your API key is correct and you have internet connection.</p>`;
+            resultDiv.innerHTML = `<p>Error fetching weather data. Check your API key and internet connection.</p>`;
         });
 });
-
-
