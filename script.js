@@ -10,7 +10,8 @@ button.addEventListener("click", () => {
         return;
     }
 
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},ZA&appid=${apiKey}&units=metric`)
+
         .then(res => res.json())
         .then(data => {
             if (data.cod === "404") {
